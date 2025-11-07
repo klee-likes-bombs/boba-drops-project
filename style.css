@@ -3,5 +3,13 @@ img {
 }
 body {
 text-align: center;
-font-family: 'Courier New';
+  font-family: 'Orbitron', sans-serif;
+
+  background-image: url(https://ts4.mm.bing.net/th?id=OIP.UCPN0R2Ce4S96opO09kR_wHaEK&pid=15.1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+
+
 }
