@@ -21,7 +21,7 @@
     const closeBtn = document.getElementById('close-popup');
     const popup = document.getElementById('jelly-popup');
 
-    let popupDismissed = false; // Track if user closed the popup
+    let popupDismissed = sessionStorage.getItem('popupDismissed') === 'true';
 
     button.addEventListener('click', () => {
       audio.muted = !audio.muted;
@@ -40,9 +40,26 @@
 
     closeBtn.addEventListener('click', () => {
       popup.style.display = 'none';
-      popupDismissed = true; // Prevent it from showing again
+      sessionStorage.setItem('popupDismissed', 'true');
     });
   };
+
+  function showReactionPopup() {
+    document.getElementById('jelly-popup').style.display = 'none';
+    document.getElementById('reaction-popup').style.display = 'block';
+    sessionStorage.setItem('popupDismissed', 'true');
+  }
+
+  function closeReactionPopup() {
+    document.getElementById('reaction-popup').style.display = 'none';
+    sessionStorage.setItem('popupDismissed', 'true');
+  }
+
+  function acceptJellyBaby() {
+    sessionStorage.setItem('popupDismissed', 'true');
+    document.getElementById('jelly-popup').style.display = 'none';
+    window.open('https://www.amazon.com/Bassetts-Jelly-Babies-190g-Bag/dp/B00U9W2SVS', '_blank');
+  }
 </script>
 <img src="https://th.bing.com/th/id/OIP.lDCBqOpJ3jTwbdQRCub8xAHaEK?w=321&h=180&c=7&r=0&o=7&pid=1.7&rm=3">
 <h1>The Daily Whovian</h1>
@@ -76,8 +93,15 @@
 <p>- The Daily Whovian</p>
 <div id="jelly-popup">
   <button id="close-popup">✖</button>
-  <img src=https://ts3.mm.bing.net/th?id=OIP.YQDl5k84zJnSmrxFJ-W85QHaFd&pid=15.1 alt="Fourth Doctor" />
+  <img src="https://ts3.mm.bing.net/th?id=OIP.YQDl5k84zJnSmrxFJ-W85QHaFd&pid=15.1" alt="Fourth Doctor" />
   <p>Care for a jelly baby?</p>
+  <button onclick="acceptJellyBaby()">Yes</button>
+  <button onclick="showReactionPopup()">No</button>
+</div>
+<div id="reaction-popup">
+  <button onclick="closeReactionPopup()">✖</button>
+  <img src="https://ts2.mm.bing.net/th?id=OIP.S3cboRfe0MfbK91UtrkLpAHaMO&pid=15.1" alt="Fourth Doctor Disappointed" />
+  <p>"No? How very disappointing... I had such high hopes for you."</p>
 </div>
 </body>
 </html>
