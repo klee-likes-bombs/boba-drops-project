@@ -1,27 +1,132 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <title>The Daily Whovian</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      background-image: url(https://ts4.mm.bing.net/th?id=OIP.UCPN0R2Ce4S96opO09kR_wHaEK&pid=15.1);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: white;
+    }
+
+    img.content-img {
+      width: 500px;
+    }
+
+    #mute-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .screwdriver-icon {
+      width: 50px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    #mute-button:hover .screwdriver-icon {
+      transform: rotate(20deg) scale(1.1);
+    }
+
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    #jelly-popup,
+    #reaction-popup {
+      position: fixed;
+      background: #fff;
+      border: 2px solid #333;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 9999;
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      color: black;
+    }
+
+    #jelly-popup {
+      bottom: 20px;
+      right: 20px;
+      max-width: 220px;
+    }
+
+    #reaction-popup {
+      bottom: 100px;
+      right: 20px;
+      max-width: 220px;
+    }
+
+    #jelly-popup img,
+    #reaction-popup img {
+      width: 100px;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    #close-popup,
+    #reaction-popup button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: transparent;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #jelly-popup button {
+      margin: 5px;
+      padding: 8px 12px;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      transition: background-color 0.3s ease;
+    }
+
+    #jelly-popup button:hover {
+      background-color: #ffdd44;
+    }
+  </style>
 </head>
-<body><button id="mute-button" title="Mute/Unmute Music">
-<img src="https://www.pngitem.com/pimgs/m/473-4730660_10th-doctor-day-of-the-doctor-sonic-screwdriver.png" alt="Tenth Doctor Sonic Screwdriver" class="screwdriver-icon">
-</button>
-<audio id="who-theme" autoplay loop>
-  <source src="doctorwhotheme.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-<script>
+<body>
+  <button id="mute-button" title="Mute/Unmute Music">
+    <img src="https://www.pngitem.com/pimgs/m/473-4730660_10th-doctor-day-of-the-doctor-sonic-screwdriver.png" alt="Tenth Doctor Sonic Screwdriver" class="screwdriver-icon">
+  </button>
+  <audio id="who-theme" autoplay loop>
+    <source src="doctorwhotheme.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script>
   window.onload = function () {
     const audio = document.getElementById('who-theme');
     const button = document.getElementById('mute-button');
     const closeBtn = document.getElementById('close-popup');
     const popup = document.getElementById('jelly-popup');
-
-    let popupDismissed = sessionStorage.getItem('popupDismissed') === 'true';
 
     button.addEventListener('click', () => {
       audio.muted = !audio.muted;
@@ -29,6 +134,7 @@
     });
 
     window.addEventListener('scroll', () => {
+      const popupDismissed = sessionStorage.getItem('popupDismissed') === 'true';
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const docHeight = document.body.scrollHeight;
@@ -61,47 +167,45 @@
     window.open('https://www.amazon.com/Bassetts-Jelly-Babies-190g-Bag/dp/B00U9W2SVS', '_blank');
   }
 </script>
-<img src="https://th.bing.com/th/id/OIP.lDCBqOpJ3jTwbdQRCub8xAHaEK?w=321&h=180&c=7&r=0&o=7&pid=1.7&rm=3">
-<h1>The Daily Whovian</h1>
-<p> News that's all Doctor Who</p>
-<p>FUN FACT OF THE DAY</p>
-    <p>The TARDIS wasn’t always supposed to look like a police box!</p>
-    <p>Originally, the TARDIS (Time And Relative Dimension In Space) was designed to change its appearance to blend in with its surroundings.</p>
-    <p>But after the first episode, the chameleon circuit “broke,” leaving it stuck as a 1960s British police box — a happy accident that became one of the show’s most iconic visuals.</p>
-<p>QUOTE OF THE DAY</p>
-<P>"I am definitely a mad man with a box." – The Eleventh Doctor </P>
-<p>COSPLAY CORNER</p>
-<P>The latest and greatest of doctor who cosplays!</P>
-<img src="https://i.pinimg.com/474x/0c/55/0c/0c550c42b5c2892a8cb551363178126a.jpg">
-<img src="https://i.pinimg.com/originals/b7/e0/eb/b7e0eb630b96742230b9900391a156e8.jpg">
-<img src="https://i.pinimg.com/736x/55/bd/5c/55bd5c8585d3ae31eb9794bc6bde9ea6.jpg">
-<p>COSPLAY SHOP</p>
-<p>You can find the tenth doctor's shoes on the 
-  <a href="https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/159484F_070.html?dwvar_M9006MP_color=natural%20ivory&dwvar_M9006MP_size=070&dwvar_M9006MP_width=standard&styleNo=159484F&pdp=true" target="_blank">
-    Converse site
-  </a>
-</p>
+  <img src="https://th.bing.com/th/id/OIP.lDCBqOpJ3jTwbdQRCub8xAHaEK?w=321&h=180&c=7&r=0&o=7&pid=1.7&rm=3" class="content-img">
+  <h1>The Daily Whovian</h1>
+  <p> News that's all Doctor Who</p>
+  <p>FUN FACT OF THE DAY</p>
+  <p>The TARDIS wasn’t always supposed to look like a police box!</p>
+  <p>Originally, the TARDIS (Time And Relative Dimension In Space) was designed to change its appearance to blend in with its surroundings.</p>
+  <p>But after the first episode, the chameleon circuit “broke,” leaving it stuck as a 1960s British police box — a happy accident that became one of the show’s most iconic visuals.</p>
+  <p>QUOTE OF THE DAY</p>
+  <p>"I am definitely a mad man with a box." – The Eleventh Doctor </p>
+  <p>COSPLAY CORNER</p>
+  <p>The latest and greatest of doctor who cosplays!</p>
+  <img src="https://i.pinimg.com/474x/0c/55/0c/0c550c42b5c2892a8cb551363178126a.jpg" class="content-img">
+  <img src="https://i.pinimg.com/originals/b7/e0/eb/b7e0eb630b96742230b9900391a156e8.jpg" class="content-img">
+  <img src="https://i.pinimg.com/736x/55/bd/5c/55bd5c8585d3ae31eb9794bc6bde9ea6.jpg" class="content-img">
+  <p>COSPLAY SHOP</p>
+  <p>You can find the tenth doctor's shoes on the 
+    <a href="https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/159484F_070.html?dwvar_M9006MP_color=natural%20ivory&dwvar_M9006MP_size=070&dwvar_M9006MP_width=standard&styleNo=159484F&pdp=true" target="_blank">
+      Converse site
+    </a>
+  </p>
+  <img src="https://miro.medium.com/v2/resize:fit:1400/1*5Zzkgxc66h2T5CNN-sTduA.jpeg" alt="Tenth Doctor's Shoes" class="content-img">
+  <p>You can find the Fourth Doctor's iconic scarf on <a href="https://www.amazon.com/Doctor-Who-Scarf-Official-Lovarzi/dp/B00H60RO6K" target="_blank">Amazon</a></p>
+  <img src="https://m.media-amazon.com/images/I/51P7by3H1WL._AC_.jpg" alt="Tom Baker Doctor Who Scarf" class="content-img">
+  <p>THATS ALL FOR NOW</p>
+  <p>Until the next regeneration!</p>
+  <p>- The Daily Whovian</p>
 
-<img 
-  src="https://miro.medium.com/v2/resize:fit:1400/1*5Zzkgxc66h2T5CNN-sTduA.jpeg" 
-  alt="Tenth Doctor's Shoes" 
-  style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
-<p>You can find the Fourth Doctor's iconic scarf on <a href="https://www.amazon.com/Doctor-Who-Scarf-Official-Lovarzi/dp/B00H60RO6K" target="_blank">Amazon</a></p>
-<img src="https://m.media-amazon.com/images/I/51P7by3H1WL._AC_.jpg" alt="Tom Baker Doctor Who Scarf" style="max-width:100%; height:auto;">
-<p>THATS ALL FOR NOW</p>
-<P>Until the next regeneration!</P>
-<p>- The Daily Whovian</p>
-<div id="jelly-popup">
-  <button id="close-popup">✖</button>
-  <img src="https://ts3.mm.bing.net/th?id=OIP.YQDl5k84zJnSmrxFJ-W85QHaFd&pid=15.1" alt="Fourth Doctor" />
-  <p>Care for a jelly baby?</p>
-  <button onclick="acceptJellyBaby()">Yes</button>
-  <button onclick="showReactionPopup()">No</button>
-</div>
-<div id="reaction-popup">
-  <button onclick="closeReactionPopup()">✖</button>
-  <img src="https://ts2.mm.bing.net/th?id=OIP.S3cboRfe0MfbK91UtrkLpAHaMO&pid=15.1" alt="Fourth Doctor Disappointed" />
-  <p>"No? How very disappointing... I had such high hopes for you."</p>
-</div>
+   <div id="jelly-popup">
+    <button id="close-popup">✖</button>
+    <img src="https://ts3.mm.bing.net/th?id=OIP.YQDl5k84zJnSmrxFJ-W85QHaFd&pid=15.1" alt="Fourth Doctor" />
+    <p>Care for a jelly baby?</p>
+    <button onclick="acceptJellyBaby()">Yes</button>
+    <button onclick="showReactionPopup()">No</button>
+  </div>
+
+  <div id="reaction-popup">
+    <button onclick="closeReactionPopup()">✖</button>
+    <img src="https://ts2.mm.bing.net/th?id=OIP.S3cboRfe0MfbK91UtrkLpAHaMO&pid=15.1" alt="Fourth Doctor Disappointed" />
+    <p>"No? How very disappointing... I had such high hopes for you."</p>
+  </div>
 </body>
 </html>

@@ -1,6 +1,8 @@
-img {
-    width: 500px;
+/* Only apply large width to main content images */
+img.content-img {
+  width: 500px;
 }
+
 body {
   text-align: center;
   font-family: 'Orbitron', sans-serif;
@@ -40,10 +42,9 @@ a:hover {
   text-decoration: underline;
 }
 
-#jelly-popup {
+#jelly-popup,
+#reaction-popup {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
   background: #fff;
   border: 2px solid #333;
   padding: 10px;
@@ -51,19 +52,33 @@ a:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   display: none;
   z-index: 9999;
-  max-width: 220px;
   text-align: center;
   font-family: 'Orbitron', sans-serif;
-  color: black; /* Merged this line into the main block */
+  color: black;
 }
 
-#jelly-popup img {
+#jelly-popup {
+  bottom: 20px;
+  right: 20px;
+  max-width: 220px;
+}
+
+#reaction-popup {
+  bottom: 100px;
+  right: 20px;
+  max-width: 220px;
+}
+
+#jelly-popup img,
+#reaction-popup img {
   width: 100px;
+  height: auto;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
-#close-popup {
+#close-popup,
+#reaction-popup button {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -72,6 +87,7 @@ a:hover {
   font-size: 16px;
   cursor: pointer;
 }
+
 #jelly-popup button {
   margin: 5px;
   padding: 8px 12px;
@@ -86,36 +102,4 @@ a:hover {
 
 #jelly-popup button:hover {
   background-color: #ffdd44;
-}
-#reaction-popup {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  background: #fff;
-  border: 2px solid #333;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  display: none;
-  z-index: 9999;
-  max-width: 250px;
-  text-align: center;
-  font-family: 'Orbitron', sans-serif;
-  color: black;
-}
-
-#reaction-popup img {
-  width: 100px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-#reaction-popup button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
 }
