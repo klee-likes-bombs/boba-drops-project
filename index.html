@@ -117,23 +117,33 @@
   <button id="mute-button" title="Mute/Unmute Music">
     <img src="https://www.pngitem.com/pimgs/m/473-4730660_10th-doctor-day-of-the-doctor-sonic-screwdriver.png" alt="Tenth Doctor Sonic Screwdriver" class="screwdriver-icon">
   </button>
-  <audio id="who-theme" autoplay loop>
-    <source src="doctorwhotheme.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  <script>
+  <audio id="who-theme" loop>
+  <source src="doctorwhotheme.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+ <script>
   window.onload = function () {
     const audio = document.getElementById('who-theme');
     const button = document.getElementById('mute-button');
     const closeBtn = document.getElementById('close-popup');
     const popup = document.getElementById('jelly-popup');
+    let hasScrolled = false;
 
+    // Mute toggle
     button.addEventListener('click', () => {
       audio.muted = !audio.muted;
       button.style.opacity = audio.muted ? '0.5' : '1';
     });
 
+    // Scroll detection to start music
     window.addEventListener('scroll', () => {
+      if (!hasScrolled) {
+        audio.play().catch(() => {
+          // Some browsers may block autoplay until user interaction
+        });
+        hasScrolled = true;
+      }
+
       const popupDismissed = sessionStorage.getItem('popupDismissed') === 'true';
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
@@ -144,6 +154,7 @@
       }
     });
 
+    // Close jelly popup
     closeBtn.addEventListener('click', () => {
       popup.style.display = 'none';
       sessionStorage.setItem('popupDismissed', 'true');
