@@ -117,7 +117,7 @@
   <button id="mute-button" title="Mute/Unmute Music">
     <img src="https://www.pngitem.com/pimgs/m/473-4730660_10th-doctor-day-of-the-doctor-sonic-screwdriver.png" alt="Tenth Doctor Sonic Screwdriver" class="screwdriver-icon">
   </button>
-  <audio id="who-theme" loop>
+ <audio id="who-theme" loop>
   <source src="doctorwhotheme.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
@@ -127,23 +127,34 @@
     const button = document.getElementById('mute-button');
     const closeBtn = document.getElementById('close-popup');
     const popup = document.getElementById('jelly-popup');
-    let hasScrolled = false;
+    const hint = document.getElementById('audio-hint');
+    let hasInteracted = false;
+
+    // Show hint until user interacts
+    hint.style.display = 'block';
+
+    // First interaction unlocks audio
+    document.body.addEventListener('click', () => {
+      if (!hasInteracted) {
+        audio.play().catch(() => {});
+        hasInteracted = true;
+        hint.style.display = 'none';
+      }
+    }, { once: true });
 
     // Mute toggle
     button.addEventListener('click', () => {
+      if (!hasInteracted) {
+        audio.play().catch(() => {});
+        hasInteracted = true;
+        hint.style.display = 'none';
+      }
       audio.muted = !audio.muted;
       button.style.opacity = audio.muted ? '0.5' : '1';
     });
 
-    // Scroll detection to start music
+    // Scroll detection for popup
     window.addEventListener('scroll', () => {
-      if (!hasScrolled) {
-        audio.play().catch(() => {
-          // Some browsers may block autoplay until user interaction
-        });
-        hasScrolled = true;
-      }
-
       const popupDismissed = sessionStorage.getItem('popupDismissed') === 'true';
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
@@ -218,5 +229,20 @@
     <img src="https://ts2.mm.bing.net/th?id=OIP.S3cboRfe0MfbK91UtrkLpAHaMO&pid=15.1" alt="Fourth Doctor Disappointed" />
     <p>"No? How very disappointing... I had such high hopes for you."</p>
   </div>
+<div id="audio-hint" style="
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: rgba(0,0,0,0.7);
+  color: #00ffcc;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  z-index: 9999;
+  display: none;
+">
+  Click anywhere to activate theme music!
+</div>
 </body>
 </html>
