@@ -2,17 +2,15 @@ img {
     width: 500px;
 }
 body {
-text-align: center;
+  text-align: center;
   font-family: 'Orbitron', sans-serif;
-
   background-image: url(https://ts4.mm.bing.net/th?id=OIP.UCPN0R2Ce4S96opO09kR_wHaEK&pid=15.1);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   color: white;
-
-
 }
+
 #mute-button {
   position: fixed;
   bottom: 20px;
@@ -31,6 +29,7 @@ text-align: center;
 #mute-button:hover .screwdriver-icon {
   transform: rotate(20deg) scale(1.1);
 }
+
 a {
   color: #00ffcc;
   text-decoration: none;
@@ -39,4 +38,37 @@ a {
 a:hover {
   color: #ffffff;
   text-decoration: underline;
+}
+
+#jelly-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  border: 2px solid #333;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 9999;
+  max-width: 220px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  color: black; /* Merged this line into the main block */
+}
+
+#jelly-popup img {
+  width: 100px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#close-popup {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }

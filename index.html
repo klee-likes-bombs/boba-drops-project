@@ -15,13 +15,34 @@
   Your browser does not support the audio element.
 </audio>
 <script>
-  const audio = document.getElementById('who-theme');
-  const button = document.getElementById('mute-button');
+  window.onload = function () {
+    const audio = document.getElementById('who-theme');
+    const button = document.getElementById('mute-button');
+    const closeBtn = document.getElementById('close-popup');
+    const popup = document.getElementById('jelly-popup');
 
-  button.addEventListener('click', () => {
-    audio.muted = !audio.muted;
-    button.style.opacity = audio.muted ? '0.5' : '1';
-  });
+    let popupDismissed = false; // Track if user closed the popup
+
+    button.addEventListener('click', () => {
+      audio.muted = !audio.muted;
+      button.style.opacity = audio.muted ? '0.5' : '1';
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.body.scrollHeight;
+
+      if (!popupDismissed && scrollTop + windowHeight >= docHeight - 10) {
+        popup.style.display = 'block';
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+      popupDismissed = true; // Prevent it from showing again
+    });
+  };
 </script>
 <img src="https://th.bing.com/th/id/OIP.lDCBqOpJ3jTwbdQRCub8xAHaEK?w=321&h=180&c=7&r=0&o=7&pid=1.7&rm=3">
 <h1>The Daily Whovian</h1>
@@ -53,5 +74,10 @@
 <p>THATS ALL FOR NOW</p>
 <P>Until the next regeneration!</P>
 <p>- The Daily Whovian</p>
+<div id="jelly-popup">
+  <button id="close-popup">✖</button>
+  <img src=https://ts3.mm.bing.net/th?id=OIP.YQDl5k84zJnSmrxFJ-W85QHaFd&pid=15.1 alt="Fourth Doctor" />
+  <p>Care for a jelly baby?</p>
+</div>
 </body>
 </html>
